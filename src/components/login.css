@@ -1,0 +1,42 @@
+.login-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+}
+
+.cta-section-login div {
+    margin-bottom: 10px;
+}
+
+.cta-section-login {
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.cta-section-login input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.cta-section-login button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.cta-section-login #login {
+    margin-right: 10px;
+}
+
+.cta-section-login button:hover {
+    background-color: #0056b3;
+}
