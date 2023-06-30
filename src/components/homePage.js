@@ -6,14 +6,11 @@ const HomePage = () => {
     <div className="home-page">
       <h1>Fuel Prediction App</h1>
       <p>
-        Welcome to the Fuel Prediction App. This app helps you predict fuel
-        consumption based on various factors.
+        Cultivating innovation and driving growth, our software empowers
+        companies of all sizes to unlock their full potential in the digital
+        landscape, revolutionizing how they operate and thrive in the
+        ever-evolving business landscape.
       </p>
-      <div className="cta-section">
-        <input type="text" placeholder="Enter distance in kilometers" />
-        <input type="text" placeholder="Enter vehicle model" />
-        <button>Get Prediction</button>
-      </div>
     </div>
   );
 };
