@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { FormErrors } from './FormErrors';
 import './Form.css';
-import SComponent from './hello';
 class Form extends Component {
     constructor (props) {
       super(props);
@@ -12,7 +11,7 @@ class Form extends Component {
         states: '',
         formErrors: {name: '', zipcode: '',address: '',address2: '',city: '',states: '',},
         nameValid: false,
-        zipcodeValid: false,
+        zipcodeshortValid: false,
         addressValid: false,
         cityValid: false,
         statesValid: false,
@@ -30,18 +29,19 @@ class Form extends Component {
     validateField(fieldName, value) {
         let fieldValidationErrors = this.state.formErrors;
         let nameValid = this.state.nameValid;
-        let zipcodeValid = this.state.zipcodedValid;
+        let zipcodeshortValid = this.state.zipcodeshortValid;
         let addressValid = this.state.addressValid;
         let cityValid = this.state.cityValid;
         let statesValid = this.state.statesValid;
       switch(fieldName) {
         case 'firstname':
-          emailValid = value.length >=5
+          nameValid = value.length >=5
           fieldValidationErrors.Name = nameValid ? '' : ' is invalid';
           break;
         case 'zipcode':
-          passwordValid = value.length >= 5;
-          fieldValidationErrors.Zipcode = zipcodeValid ? '': ' is too short';
+          zipcodeshortValid = value.length >= 5 && value.length <= 9;
+          fieldValidationErrors.Zipcode = zipcodeshortValid ? '': ' is invalid. Make sure it is between 5 to 9 characters';
+
           break;
         case 'address':
             addressValid = value.length > 10;
@@ -59,7 +59,7 @@ class Form extends Component {
       }
       this.setState({formErrors: fieldValidationErrors,
                       nameValid: nameValid,
-                      zipcodeValid: zipcodeValid,
+                      zipcodeshortValid: zipcodeshortValid,
                       addressValid: addressValid,
                       cityValid: cityValid,
                       statesValid: statesValid,
@@ -67,7 +67,7 @@ class Form extends Component {
     }
   
     validateForm() {
-      this.setState({formValid: this.state.nameValid && this.state.zipcodeValid && this.state.addressValid && this.state.statesValid && this.state.cityValid});
+      this.setState({formValid: this.state.nameValid && this.state.zipcodeshortValid && this.state.addressValid && this.state.statesValid && this.state.cityValid});
     }
   
     errorClass(error) {
