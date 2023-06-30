@@ -11,3 +11,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.Form {
+	width: 500px;
+	margin: auto;
+}
