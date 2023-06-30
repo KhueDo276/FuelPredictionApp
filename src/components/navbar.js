@@ -9,8 +9,6 @@ const Navbar = () => {
   };
 
   const [click, setClick] = useState(false);
-
-  const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   return (
     <nav className="navbar">
@@ -38,9 +36,9 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <button className="logout-button" onClick={handleLogout}>
+          <Link to="/login" className="logout-button" onClick={handleLogout}>
             Log Out
-          </button>
+          </Link>
         </li>
       </ul>
     </nav>
