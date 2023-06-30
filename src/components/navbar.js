@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./navbar.css";
 
 const Navbar = () => {
+  const history = useHistory();
   const handleLogout = () => {
-    // Logic for logout
     console.log("Logout");
+    history.push("/login");
   };
 
   const [click, setClick] = useState(false);
@@ -36,9 +37,9 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/login" className="logout-button" onClick={handleLogout}>
+          <button className="logout-button" onClick={handleLogout}>
             Log Out
-          </Link>
+          </button>
         </li>
       </ul>
     </nav>
