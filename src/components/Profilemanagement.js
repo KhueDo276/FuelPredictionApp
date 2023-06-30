@@ -6,13 +6,13 @@ class Form extends Component {
     constructor (props) {
       super(props);
       this.state = {
-        email: '',
-        password: '',
+        name: '',
+        zipcode: '',
         address: '',
         states: '',
-        formErrors: {email: '', password: '',address: '',address2: '',city: '',states: '',},
-        emailValid: false,
-        passwordValid: false,
+        formErrors: {name: '', zipcode: '',address: '',address2: '',city: '',states: '',},
+        nameValid: false,
+        zipcodeValid: false,
         addressValid: false,
         cityValid: false,
         statesValid: false,
@@ -29,19 +29,19 @@ class Form extends Component {
   
     validateField(fieldName, value) {
         let fieldValidationErrors = this.state.formErrors;
-        let emailValid = this.state.emailValid;
-        let passwordValid = this.state.passwordValid;
+        let nameValid = this.state.nameValid;
+        let zipcodeValid = this.state.zipcodedValid;
         let addressValid = this.state.addressValid;
         let cityValid = this.state.cityValid;
         let statesValid = this.state.statesValid;
       switch(fieldName) {
         case 'firstname':
           emailValid = value.length >=5
-          fieldValidationErrors.Name = emailValid ? '' : ' is invalid';
+          fieldValidationErrors.Name = nameValid ? '' : ' is invalid';
           break;
         case 'zipcode':
           passwordValid = value.length >= 5;
-          fieldValidationErrors.Zipcode = passwordValid ? '': ' is too short';
+          fieldValidationErrors.Zipcode = zipcodeValid ? '': ' is too short';
           break;
         case 'address':
             addressValid = value.length > 10;
@@ -58,8 +58,8 @@ class Form extends Component {
           break;
       }
       this.setState({formErrors: fieldValidationErrors,
-                      emailValid: emailValid,
-                      passwordValid: passwordValid,
+                      nameValid: nameValid,
+                      zipcodeValid: zipcodeValid,
                       addressValid: addressValid,
                       cityValid: cityValid,
                       statesValid: statesValid,
@@ -67,7 +67,7 @@ class Form extends Component {
     }
   
     validateForm() {
-      this.setState({formValid: this.state.emailValid && this.state.passwordValid && this.state.addressValid && this.state.statesValid && this.state.cityValid});
+      this.setState({formValid: this.state.nameValid && this.state.zipcodeValid && this.state.addressValid && this.state.statesValid && this.state.cityValid});
     }
   
     errorClass(error) {
@@ -81,7 +81,7 @@ class Form extends Component {
           <div className="panel panel-default">
             <FormErrors formErrors={this.state.formErrors} />
           </div>
-          <div className={`form-group ${this.errorClass(this.state.formErrors.email)}`}>
+          <div className={`form-group ${this.errorClass(this.state.formErrors.name)}`}>
             <label htmlFor="fullname">Full Name </label>
             <input type="text" required className="form-control" name="firstname"
               placeholder="Full Name"
@@ -105,7 +105,7 @@ class Form extends Component {
               maxLength={100}
               onChange={this.handleUserInput}  />
           </div>
-          <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
+          <div className={`form-group ${this.errorClass(this.state.formErrors.zipcode)}`}>
             <label htmlFor="zipcode">Zipcode </label>
             <input type="number" className="form-control" name="zipcode"
               placeholder="Zipcode"
