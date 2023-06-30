@@ -15,9 +15,10 @@ function Register() {
     }
 
     return (
-        <div className="">
+        <div className="Register">
+        <header className="Register-header">
             <h1>Fuel Prediction App</h1>
-            <form onSubmit={handleSubmit} className="">
+        <form onSubmit={handleSubmit} className="Form">
                 <div>
                     <input type="text" name="username" value={inputs.username || ""} onChange={handleChange} placeholder="Username" required />
                 </div>
