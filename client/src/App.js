@@ -14,6 +14,7 @@ import Navbar from "./components/navbar";
 import LoginForm from "./LoginForm";
 import axios from "axios";
 import Register from "./components/register";
+import ClientProfilePage from "./components/clientProfile";
 
 function App() {
   const adminUser = { name: "Harry Potter", password: "123456" };
@@ -22,28 +23,10 @@ function App() {
   const history = useHistory();
 
   const Login = (details) => {
-
-      const [serverUser, setServerUser] = useState();
-      useEffect(() => {
-          const fetchData = async () => {
-              try {
-                  const response = await axios.post(
-                      "http://localhost:5001/api/user",
-                      details
-                  );
-                  setServerUser(response.data);
-              } catch (error) {
-                  console.log(error);
-              }
-          };
-          fetchData();
-      }, []);
-
     console.log(details);
     if (
-      //details.name == adminUser.name &&
-      //details.password == adminUser.password
-      serverUser == true
+      details.name == adminUser.name &&
+      details.password == adminUser.password
     ) {
       console.log("Logged in");
       setUser({
@@ -68,6 +51,16 @@ function App() {
         <Switch>
           <Route path="/" exact>
             {user.name !== "" ? <HomePage /> : <Redirect to="/login" />}
+          </Route>
+          <Route path="/profile">
+            {user.name !== "" ? (
+              <>
+                <Navbar handleLogout={Logout} />
+                <ClientProfilePage />
+              </>
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
           <Route path="/fuelForm">
             {user.name !== "" ? (

@@ -1,0 +1,69 @@
+.profileForm {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.profileForm h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profileForm .form-group {
+  margin-bottom: 20px;
+}
+
+.profileForm label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.profileForm input[type="text"],
+.profileForm textarea,
+.profileForm input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.profileForm textarea {
+  resize: vertical;
+}
+
+.profileForm button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.profileForm button[type="submit"]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.profileForm .has-error input,
+.profileForm .has-error textarea {
+  border-color: #dc3545;
+}
+
+.profileForm .panel {
+  margin-bottom: 20px;
+}
+
+.profileForm .panel ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.profileForm .panel ul li {
+  color: #dc3545;
+}

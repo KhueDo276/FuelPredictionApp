@@ -1,0 +1,48 @@
+/* CSS for the ClientProfilePage component */
+.client-profile-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-container {
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
