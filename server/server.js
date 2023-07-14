@@ -1,10 +1,26 @@
-const express = require("express");
+import cors from "cors";
+import bodyParser from "body-parser";
+import express from "express";
+import session from "express-session";
+import { fuelQuoteHistory } from "./src/fuelQuote/fuelController.js";
+
 const app = express();
+app.use(
+  session({
+    secret: "your secret key",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
-// app.get("/api", (req, res) => {
-//   res.json({ users: ["userOne", "userTwo", "userThree"] });
-// });
-
-app.listen(5001, () => {
-  console.log("Server started on port 5001");
+app.use(cors());
+app.use(bodyParser.json());
+app.get("/api/fuelQuoteHistory", fuelQuoteHistory);
+app.get("/", (req, res) => {
+  res.send("Homepage");
 });
+const PORT = 5001;
+
+app.listen(PORT, () =>
+  console.log(`Server is running on port: http://localhost:${PORT}...`)
+);
