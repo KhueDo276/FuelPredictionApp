@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import { Link } from "react-router-dom";
 
 function LoginForm({ Login, error }) {
   const [details, setDetails] = useState({ name: "", password: "" });
@@ -9,6 +10,8 @@ function LoginForm({ Login, error }) {
 
     Login(details);
   };
+  const [click, setClick] = useState(false);
+  const closeMobileMenu = () => setClick(false);
   return (
     <div className="App">
       <form onSubmit={submitHandler}>
@@ -39,7 +42,9 @@ function LoginForm({ Login, error }) {
           </div>
           <div className="button-group">
             <input type="submit" value="LOGIN" />
-            <input type="submit" value="REGISTER" />
+            <Link to="/register" onClick={closeMobileMenu}>
+              REGISTER
+            </Link>
           </div>
         </div>
       </form>

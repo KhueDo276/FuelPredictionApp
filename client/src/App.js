@@ -12,6 +12,7 @@ import FuelFormHistory from "./components/fuelFormHistory";
 import FuelForm from "./components/fuelForm";
 import Navbar from "./components/navbar";
 import LoginForm from "./LoginForm";
+import Register from "./components/register";
 
 function App() {
   const adminUser = { name: "Harry Potter", password: "123456" };
@@ -38,40 +39,52 @@ function App() {
   const Logout = () => {
     console.log("Logged out");
     setUser({ name: "" });
-    history.push("/login"); // Redirect to the login page
+    history.push("/login");
   };
-  return (
-    <>
-      <div>
-        {user.name != "" ? (
-          <div>
-            <h2>
-              {" "}
-              <Router>
-                <div>
-                  <Navbar />
-                  <Switch>
-                    <Route path="/" exact component={HomePage} />
-                    <Route path="/fuelForm" component={FuelForm} />
-                    <Route
-                      path="/fuelFormHistory"
-                      component={FuelFormHistory}
-                    />
 
-                    <Redirect to="/" />
-                  </Switch>
-                </div>
-              </Router>
-            </h2>
-            <button onClick={Logout}>Logout</button> {/* Logout button */}
-          </div>
-        ) : (
-          <div>
-            <LoginForm Login={Login} error={error} />{" "}
-          </div>
+  return (
+    <Router>
+      <div>
+        {user.name !== "" && <Navbar handleLogout={Logout} />}
+        <Switch>
+          <Route path="/" exact>
+            {user.name !== "" ? <HomePage /> : <Redirect to="/login" />}
+          </Route>
+          <Route path="/fuelForm">
+            {user.name !== "" ? (
+              <>
+                <Navbar handleLogout={Logout} />
+                <FuelForm />
+              </>
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
+          <Route path="/fuelFormHistory">
+            {user.name !== "" ? (
+              <>
+                <Navbar handleLogout={Logout} />
+                <FuelFormHistory />
+              </>
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
+          <Route path="/login">
+            {user.name !== "" ? (
+              <Redirect to="/" />
+            ) : (
+              <LoginForm Login={Login} error={error} />
+            )}
+          </Route>
+          <Route path="/register" component={Register} />
+          <Redirect to="/login" />
+        </Switch>
+        {user.name !== "" && (
+          <button onClick={Logout}>Logout</button> // Logout button
         )}
       </div>
-    </>
+    </Router>
   );
 }
 
