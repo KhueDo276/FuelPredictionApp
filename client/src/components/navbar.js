@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "./navbar.css";
 
-const Navbar = () => {
-  const history = useHistory();
+const Navbar = ({ history }) => {
   const handleLogout = () => {
     console.log("Logout");
+    // Add any logout logic here
     history.push("/login");
   };
 
@@ -37,6 +37,9 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
+          {/* <Link to="/login" onClick={closeMobileMenu}>
+            Log Out
+          </Link> */}
           <button className="logout-button" onClick={handleLogout}>
             Log Out
           </button>
@@ -46,4 +49,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);
