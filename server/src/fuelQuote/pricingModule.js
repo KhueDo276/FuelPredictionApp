@@ -55,10 +55,12 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.get('/home', function(req,res){
+    let one = "dfs";
     console.log('Inside of Home Login')
     res.writeHead(200, {'Content-Type': 'application/json',})
     console.log('Info: ', JSON.stringify(one));
     res.end(JSON.stringify(one));
+});
 })
 app.post('/home', function(req,res) {
         Newguy.setGallons(req.body[0]);
@@ -69,7 +71,9 @@ app.post('/home', function(req,res) {
         {
             return res.status(400).json({ error: "Missing required fields" });
         }
-        
+        else{
+            console.log("TRUEE");
+        }    
 });
 findtruth = (number) =>
 {
