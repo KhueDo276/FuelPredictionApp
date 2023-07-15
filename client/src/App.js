@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,7 +12,6 @@ import FuelFormHistory from "./components/fuelFormHistory";
 import FuelForm from "./components/fuelForm";
 import Navbar from "./components/navbar";
 import LoginForm from "./LoginForm";
-import axios from "axios";
 import Register from "./components/register";
 import ClientProfilePage from "./components/clientProfile";
 
@@ -23,19 +22,18 @@ function App() {
   const history = useHistory();
 
   const Login = (details) => {
-    console.log(details);
-    if (
-      details.name == adminUser.name &&
-      details.password == adminUser.password
-    ) {
-      console.log("Logged in");
-      setUser({
-        name: details.name,
-      });
-    } else {
-      console.log("Details do not match!");
-      setError("Details do not match!");
-    }
+      console.log(details);
+      if (
+          details.message == "True"
+      ) {
+          console.log("Logged in");
+          setUser({
+              name: details.name,
+          });
+      } else {
+          console.log(details.message);
+          setError(details.message);
+      }
   };
 
   const Logout = () => {

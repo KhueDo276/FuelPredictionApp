@@ -1,10 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
-    "\\src",
-    "\\src\\components"
+    "\\client",
+    "\\client\\src",
+    "\\server",
+    "\\server\\src",
+    "\\server\\src\\fuelQuote",
+    "\\server\\src\\users"
   ],
-  "SelectedNode": "\\src\\components\\login.js",
+  "SelectedNode": "\\server\\src\\users\\userController.js",
   "PreviewInSolutionExplorer": false
 }

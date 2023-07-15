@@ -61,6 +61,7 @@ app.get('/home', function(req,res){
     console.log('Info: ', JSON.stringify(one));
     res.end(JSON.stringify(one));
 });
+})
 app.post('/home', function(req,res) {
         Newguy.setGallons(req.body[0]);
         Newguy.setDate(req.body[2]);
@@ -72,8 +73,7 @@ app.post('/home', function(req,res) {
         }
         else{
             console.log("TRUEE");
-        }
-        
+        }    
 });
 findtruth = (number) =>
 {

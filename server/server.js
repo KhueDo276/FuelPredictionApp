@@ -31,7 +31,7 @@ app.post("/api/register", (req, res) => {
   return res.status(200).json({ message: "Registration successful" });
 });
 app.get("/api/fuelQuoteHistory", fuelQuoteHistory);
-//app.get("/api/user", user);
+app.post("/api/user", user);
 app.get("/", (req, res) => {
   res.send("Homepage");
 });
