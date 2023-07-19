@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./fuelFormHistory.css";
+import "./styles/fuelFormHistory.css";
 import axios from "axios";
+import Navbar from "./navbar";
 
 const FuelFormHistory = () => {
   const [fuelQuoteHistory, setFuelQuoteHistory] = useState([]);
@@ -40,6 +41,7 @@ const FuelFormHistory = () => {
 
   return (
     <>
+      <Navbar />
       <div className="table-container">
         <h1> Fuel Form History</h1>
         <table className="fuel-order-table">

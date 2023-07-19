@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FormErrors } from "./FormErrors";
-import "./profile.css";
+import "./styles/profile.css";
 
 class Profile extends Component {
   constructor(props) {

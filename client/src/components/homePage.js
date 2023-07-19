@@ -1,9 +1,11 @@
 import React from "react";
-import "./homePage.css";
+import Navbar from "./navbar";
+import "./styles/homePage.css";
 
 const HomePage = () => {
   return (
     <div className="home-page">
+      <Navbar />
       <h1>Fuel Prediction App</h1>
       <p>
         Cultivating innovation and driving growth, our software empowers

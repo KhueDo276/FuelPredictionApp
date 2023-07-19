@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import express from "express";
 import session from "express-session";
 import { fuelQuoteHistory } from "./src/fuelQuote/fuelController.js";
-import { user } from "./src/user/userController.js";
+//import { user } from "./src/user/userController.js";
 
 const app = express();
 app.use(
@@ -31,7 +31,7 @@ app.post("/api/register", (req, res) => {
   return res.status(200).json({ message: "Registration successful" });
 });
 app.get("/api/fuelQuoteHistory", fuelQuoteHistory);
-app.post("/api/user", user);
+//app.post("/api/user", user);
 app.get("/", (req, res) => {
   res.send("Homepage");
 });

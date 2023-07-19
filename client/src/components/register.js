@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./register.css";
+import "./styles/register.css";
 
 function Register() {
   const [inputs, setInputs] = useState({});
@@ -82,7 +82,7 @@ function Register() {
         </div>
       </form>
       <div className="Login-link">
-        <Link to="/login">Back to Login</Link>
+        <Link to="/">Back to Login</Link>
       </div>
     </div>
   );

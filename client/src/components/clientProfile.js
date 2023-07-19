@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "./navbar";
 
 const states = [
   { value: "", label: "Select State" },
@@ -114,62 +115,77 @@ const ClientProfilePage = () => {
   };
 
   return (
-    <div>
-      <h2>Client Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Last Name:
-          <input type="text" value={lastName} onChange={handleLastNameChange} />
-        </label>
-        <br />
-        <label>
-          First Name:
-          <input
-            type="text"
-            value={firstName}
-            onChange={handleFirstNameChange}
-          />
-        </label>
-        <br />
-        <label>
-          ID:
-          <input type="text" value={id} onChange={handleIdChange} />
-        </label>
-        <br />
-        <label>
-          Address 1:
-          <input type="text" value={address1} onChange={handleAddress1Change} />
-        </label>
-        <br />
-        <label>
-          Address 2:
-          <input type="text" value={address2} onChange={handleAddress2Change} />
-        </label>
-        <br />
-        <label>
-          Zipcode:
-          <input type="text" value={zipcode} onChange={handleZipcodeChange} />
-        </label>
-        <br />
-        <label>
-          City:
-          <input type="text" value={city} onChange={handleCityChange} />
-        </label>
-        <br />
-        <label>
-          State:
-          <select value={selectedState} onChange={handleStateChange}>
-            {states.map((state) => (
-              <option key={state.value} value={state.value}>
-                {state.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <br />
-        <button type="submit">Save</button>
-      </form>
-    </div>
+    <>
+      <Navbar />
+      <div>
+        <h2>Client Profile</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Last Name:
+            <input
+              type="text"
+              value={lastName}
+              onChange={handleLastNameChange}
+            />
+          </label>
+          <br />
+          <label>
+            First Name:
+            <input
+              type="text"
+              value={firstName}
+              onChange={handleFirstNameChange}
+            />
+          </label>
+          <br />
+          <label>
+            ID:
+            <input type="text" value={id} onChange={handleIdChange} />
+          </label>
+          <br />
+          <label>
+            Address 1:
+            <input
+              type="text"
+              value={address1}
+              onChange={handleAddress1Change}
+            />
+          </label>
+          <br />
+          <label>
+            Address 2:
+            <input
+              type="text"
+              value={address2}
+              onChange={handleAddress2Change}
+            />
+          </label>
+          <br />
+          <label>
+            Zipcode:
+            <input type="text" value={zipcode} onChange={handleZipcodeChange} />
+          </label>
+          <br />
+          <label>
+            City:
+            <input type="text" value={city} onChange={handleCityChange} />
+          </label>
+          <br />
+          <label>
+            State:
+            <select value={selectedState} onChange={handleStateChange}>
+              {states.map((state) => (
+                <option key={state.value} value={state.value}>
+                  {state.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <br />
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    </>
   );
 };
 
