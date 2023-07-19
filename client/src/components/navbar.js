@@ -1,46 +1,38 @@
-import React, { useState } from "react";
-import { Link, withRouter } from "react-router-dom";
-import "./navbar.css";
+import "./styles/navbar.css";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ history }) => {
-  const handleLogout = () => {
-    console.log("Logout");
-    // Add any logout logic here
-    history.push("/login");
+  const navigate = useNavigate();
+
+  const handleClick = (toLink) => {
+    navigate(`/${toLink}`);
   };
 
-  const [click, setClick] = useState(false);
-  const closeMobileMenu = () => setClick(false);
+  const handleClickLogOut = (e) => {
+    Cookies.remove("role");
+    Cookies.remove("accessToken");
+    e.preventDefault();
+    navigate("/");
+  };
+
   return (
     <nav className="navbar">
       <ul className="nav-links">
-        <li>
-          <Link to="/" onClick={closeMobileMenu}>
-            Home
-          </Link>
-        </li>
+        <li onClick={() => handleClick("homepage")}>Home</li>
       </ul>
       <ul className="nav-links">
+        <li onClick={() => handleClick("profile")}>Profile</li>
         <li>
-          <Link to="/profile" onClick={closeMobileMenu}>
-            Profile
-          </Link>
+          <li onClick={() => handleClick("fuelForm")}>Fuel Form</li>
         </li>
         <li>
-          <Link to="/fuelForm" onClick={closeMobileMenu}>
-            Fuel Form
-          </Link>
-        </li>
-        <li>
-          <Link to="/fuelFormHistory" onClick={closeMobileMenu}>
+          <li onClick={() => handleClick("fuelFormHistory")}>
             Fuel Form History
-          </Link>
+          </li>
         </li>
         <li>
-          {/* <Link to="/login" onClick={closeMobileMenu}>
-            Log Out
-          </Link> */}
-          <button className="logout-button" onClick={handleLogout}>
+          <button className="logout-button" onClick={handleClickLogOut}>
             Log Out
           </button>
         </li>
@@ -49,4 +41,4 @@ const Navbar = ({ history }) => {
   );
 };
 
-export default withRouter(Navbar);
+export default Navbar;
