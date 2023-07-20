@@ -33,7 +33,7 @@ app.post("/api/save-client-profile", (req, res) => {
   res.json({ message: "Client profile saved successfully" });
 });
 
-const port = 3000;
+const port = 5001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
