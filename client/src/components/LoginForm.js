@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({ Login, error }) {
+   const navigate = useNavigate();
+
   const [details, setDetails] = useState({
     name: "",
-    password: "",
-    message: "",
+    password: ""
   });
+
+  const handleLogin = (userId) => {
+    //Set session userId
+    navigate("/homePage");
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -22,8 +30,13 @@ function LoginForm({ Login, error }) {
         body: JSON.stringify(details),
       });
       const data = await response.json();
-      setDetails({ ...details, message: data.message });
-      Login(details);
+      
+      if (data.message == "True") {
+        handleLogin(data.userId);
+      }
+      else {
+        alert(data.message);
+      }
     } catch (error) {
       console.log("Error:", error);
       // Handle error state or display an error message to the user
