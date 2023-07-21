@@ -31,7 +31,7 @@ function LoginForm({ Login, error }) {
       });
       const data = await response.json();
       
-      if (data.message == "True") {
+      if (response.ok) {
         handleLogin(data.userId);
       }
       else {
