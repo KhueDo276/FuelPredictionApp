@@ -9,7 +9,7 @@ import ClientProfilePage from "./components/clientProfile";
 import NoAccess from "./components/roles/noAccess";
 import { UserElement } from "./components/roles/rolesController";
 import ClientPage from "./components/clientPages/clientPage";
-
+import ProfileManagement from "./components/Profilemanagement";
 function App() {
   return (
     <Router>
@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<LoginForm />} />
           <Route path="/homepage" element={<HomePage />} />
           <Route path="/noAccess" element={<NoAccess />} />
-          <Route path="/profile" element={<ClientProfilePage />} />
+          <Route path="/Profilemanagement" element={<ProfileManagement />} />
           <Route path="/fuelForm" element={<FuelForm />} />
           <Route path="/fuelFormHistory" element={<FuelFormHistory />} />
           <Route path="/register" element={<Register />} />
