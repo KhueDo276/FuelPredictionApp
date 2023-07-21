@@ -57,7 +57,7 @@ function ClientPage() {
           <div
             className="container"
             style={{ backgroundColor: "#ff8177" }}
-            onClick={() => handleClick(`ClientProfilePage`)}
+            onClick={() => handleClick(`ProfileManagement`)}
           >
             <p>Manage Personal Information</p>
           </div>
