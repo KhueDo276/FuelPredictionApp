@@ -12,7 +12,8 @@ function LoginForm({ Login, error }) {
     password: ""
   });
 
-  const handleLogin = () => {
+  const handleLogin = (userId) => {
+    //Set session userId
     navigate("/homePage");
   };
 
@@ -31,7 +32,7 @@ function LoginForm({ Login, error }) {
       const data = await response.json();
       
       if (data.message == "True") {
-        handleLogin();
+        handleLogin(data.userId);
       }
       else {
         alert(data.message);

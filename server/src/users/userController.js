@@ -7,7 +7,7 @@ export const user = async (req, res) => {
         return res.status(400).json({ message: "No user Found" })
     }
     else if (foundUser[0].Password == req.body.password) {
-        return res.status(200).json({ message: "True" })
+        return res.status(200).json({ userId: foundUser[0].ID, message: "True" })
     }
     else {
         return res.status(400).json({ message: "Incorrect Password" })
