@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { FormErrors } from './FormErrors';
 import axios from 'axios';
+import Navbar from "./navbar";
+
 class ProfileManagement extends Component {
     constructor (props) {
       super(props);
@@ -91,6 +93,7 @@ class ProfileManagement extends Component {
       return (
         <form className="demoForm" onSubmit={this.handleSubmit}>
           <div className="panel panel-default">
+            <Navbar />
             <FormErrors formErrors={this.state.formErrors} />
           </div>
           <div className={`form-group ${this.errorClass(this.state.formErrors.name)}`}>
