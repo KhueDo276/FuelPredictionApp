@@ -4,7 +4,7 @@ import express from "express";
 import session from "express-session";
 import { fuelQuoteHistory } from "./src/fuelQuote/fuelController.js";
 import { user } from "./src/users/userController.js";
-
+import {Pricing, Deliverys} from "./src/fuelQuote/pricingModule.js";
 const app = express();
 app.use(
   session({
@@ -32,6 +32,8 @@ app.post("/api/register", (req, res) => {
 });
 app.get("/api/fuelQuoteHistory", fuelQuoteHistory);
 app.post("/api/user", user);
+app.get("/api/PricingModule", Deliverys);
+app.post("/api/PricingModule", Pricing);
 app.get("/", (req, res) => {
   res.send("Homepage");
 });
