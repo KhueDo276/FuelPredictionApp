@@ -22,7 +22,7 @@ const Navbar = ({ history }) => {
         <li onClick={() => handleClick("homepage")}>Home</li>
       </ul>
       <ul className="nav-links">
-        <li onClick={() => handleClick("profile")}>Profile</li>
+        <li onClick={() => handleClick("Profilemanagement")}>Profile</li>
         <li>
           <li onClick={() => handleClick("fuelForm")}>Fuel Form</li>
         </li>
