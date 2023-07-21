@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FormErrors } from './FormErrors';
 import axios from 'axios';
 import Navbar from "./navbar";
+
 class ProfileManagement extends Component {
     constructor (props) {
       super(props);
