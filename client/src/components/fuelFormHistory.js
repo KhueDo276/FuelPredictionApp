@@ -19,26 +19,6 @@ const FuelFormHistory = () => {
     fetchData();
   }, []);
 
-  // //Sorting
-  // const [sortOrder, setSortOrder] = useState("asc");
-
-  // const handleSort = () => {
-  //   const sortedFuelOrders = [...fuelQuoteHistory].sort((a, b) => {
-  //     if (sortOrder === "asc") {
-  //       return a.customerId.localeCompare(b.customerId);
-  //     } else {
-  //       return b.customerId.localeCompare(a.customerId);
-  //     }
-  //   });
-
-  //   setFuelOrders(sortedFuelOrders);
-  //   setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-  // };
-
-  // const toggleSortOrder = () => {
-  //   setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-  // };
-
   return (
     <>
       <Navbar />
@@ -47,14 +27,7 @@ const FuelFormHistory = () => {
         <table className="fuel-order-table">
           <thead>
             <tr>
-              {/* <th onClick={handleSort}>
-                Customer ID{" "}
-                {sortOrder === "asc" ? (
-                  <span>&#9650;</span>
-                ) : (
-                  <span>&#9660;</span>
-                )}
-              </th> */}
+              <th>Customer ID</th>
               <th>Gallons Requested</th>
               <th>Delivery Address</th>
               <th>Delivery Date</th>
@@ -66,11 +39,12 @@ const FuelFormHistory = () => {
             {fuelQuoteHistory.length > 0 ? (
               fuelQuoteHistory.map((fuelOrdersData, index) => (
                 <tr key={index}>
-                  <td>{fuelOrdersData.gallonRequested}</td>
-                  <td>{fuelOrdersData.deliveryAddress}</td>
-                  <td>{fuelOrdersData.deliveryDate}</td>
-                  <td>{fuelOrdersData.price}</td>
-                  <td>{fuelOrdersData.total}</td>
+                  <td>{fuelOrdersData.idfuelhistory}</td>
+                  <td>{fuelOrdersData.Gallons}</td>
+                  <td>{fuelOrdersData.Address}</td>
+                  <td>{formattedDate(fuelOrdersData.DeliveryDate)}</td>
+                  <td>{fuelOrdersData.SuggestedP}</td>
+                  <td>{fuelOrdersData.Gallons * fuelOrdersData.SuggestedP}</td>
                 </tr>
               ))
             ) : (
@@ -85,5 +59,19 @@ const FuelFormHistory = () => {
     </>
   );
 };
-
 export default FuelFormHistory;
+
+export const formattedDate = (e) => {
+  const dateFromBackend = e;
+  // Convert the string to a Date object
+  const dateObject = new Date(dateFromBackend);
+  // Get the components of the date (year, month, day)
+  const year = dateObject.getFullYear();
+  const month = dateObject.getMonth() + 1; // Months are zero-based, so we add 1
+  const day = dateObject.getDate();
+  // Create the desired date string in "YYYY-MM-DD" format
+  const result = `${year}-${month.toString().padStart(2, "0")}-${day
+    .toString()
+    .padStart(2, "0")}`;
+  return result;
+};
