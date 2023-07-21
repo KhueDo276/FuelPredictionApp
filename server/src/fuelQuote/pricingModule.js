@@ -1,9 +1,5 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const logger = require("morgan");
-const cors = require("cors");
-const app = express();
-class PricingModule {
+import mysql from "mysql";
+export class PricingModule {
   Gallons = 0;
   Name = "";
   State = "TX";
@@ -36,41 +32,22 @@ class PricingModule {
     return this.Date;
   }
 }
-var Newguy = new PricingModule();
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
-app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.get("/home", function (req, res) {
-  let one = "dfs";
-  console.log("Inside of Home Login");
-  res.writeHead(200, { "Content-Type": "application/json" });
-  console.log("Info: ", JSON.stringify(one));
-  res.end(JSON.stringify(one));
-});
-
-app.post("/home", function (req, res) {
-  Newguy.setGallons(req.body[0]);
-  Newguy.setDate(req.body[2]);
-  Gallon = parseInt(Newguy.getGallons());
-  Gallons = findtruth(Gallon);
-  if (Gallons == "false") {
-    return res.status(400).json({ error: "Missing required fields" });
-  } else {
-    console.log("TRUEE");
-  }
-});
-findtruth = (number) => {
-  return Number.isInteger(number);
+export const Deliverys = async(req, res) => {
+  var conn = mysql.createConnection({host:"fuelappthing.mysql.database.azure.com", user:"quinoesteban555", password:"@FuelAppPrediction", database:"fueldatabase", port:3306,});
+  conn.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  var sql = "SELECT Address_one FROM profile WHERE idprofile = 312421";
+      conn.query(sql, function (err, result) {
+        if (err) throw err;
+        return res.json(result[0].Address_one);
+      });
+    });
 };
-
-app.listen(5001, () => {
-  console.log("Server started on 5001");
-});
+export const Pricing = async (req, res) => {
+  var Newguy = new PricingModule();
+  Newguy.setGallons(req.body[0]);
+  Newguy.setDate(req.body[1]);
+  let Gallons = "";
+};
