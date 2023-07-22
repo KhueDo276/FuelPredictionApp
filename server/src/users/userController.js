@@ -1,6 +1,9 @@
 import connection from "../database/database.js";
 
 export const user = async (req, res) => {
+    if (req.body.name == "" || req.body.password == "") {
+        return res.status(400).json({ message: "Username or password cannot be empty" })
+    }
     const [foundUser] = await connection.query(`SELECT * FROM usercredential WHERE Username = "` + req.body.name + `"`);
 
     if (foundUser.length == 0) {
