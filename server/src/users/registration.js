@@ -15,12 +15,9 @@ export const registration = ((req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     const id = randomstring.generate(10);
-    console.log(username);
-    console.log(id);
     db.query("INSERT INTO usercredential(Username, ID, Password) VALUES (?, ?, ?)", 
      [username, id, password], 
      (err, result) => { console.log(err);})
-     console.log({username}),
-     res.send('Client created')
+     console.log(id);
+     return res.json(id);
   });
-  
