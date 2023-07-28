@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./navbar";
+import {useLocation} from 'react-router-dom'
 import "./styles/homePage.css";
-
+import Goodbye from "./identificatioj";
+import Help from "./identificatioj"; 
+import axios from "axios";
 const HomePage = () => {
+  const location = useLocation();
+  useEffect(() => {
+    const fetchData = async () => {
+      let mon = "da";
+      if (location.state != null){
+      mon = location.state.id;
+      let xon = [mon];
+      try { axios
+        .post("http://localhost:5001/api/iddata", xon)
+        .then(() => console.log("info sent"))
+        .catch((err) => {
+            console.error(err);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    };
+    fetchData();
+  }, []);
   return (
     <div className="home-page">
       <Navbar />
