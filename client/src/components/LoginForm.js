@@ -3,7 +3,7 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 function LoginForm({ Login, error }) {
    const navigate = useNavigate();
 
@@ -13,16 +13,13 @@ function LoginForm({ Login, error }) {
   });
 
   const handleLogin = (userId) => {
-    //Set session userId
-    navigate("/homePage");
+    navigate("/homePage",{state:{id:userId}});
   };
-
   const submitHandler = async (e) => {
     e.preventDefault();
-
     // Send the form data to the backend for validation and persistence
     try {
-      const response = await fetch("http://localhost:5001/api/user", {
+      const response = await fetch("http://localhost:5001/api/userController", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
