@@ -44,7 +44,7 @@ const FuelFormHistory = () => {
                   <td>{fuelOrdersData.Address}</td>
                   <td>{formattedDate(fuelOrdersData.DeliveryDate)}</td>
                   <td>{fuelOrdersData.SuggestedP}</td>
-                  <td>{fuelOrdersData.Gallons * fuelOrdersData.SuggestedP}</td>
+                  <td>{fuelOrdersData.TotalP}</td>
                 </tr>
               ))
             ) : (
