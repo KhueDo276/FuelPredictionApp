@@ -1,23 +1,23 @@
-import mysql from 'mysql'
+import mysql from "mysql";
+const randomstring = require("randomstring");
 
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-
-
-const db = mysql.createConnection({
+export const registration = (req, res) => {
+  const db = mysql.createConnection({
     user: "quinoesteban555",
     host: "fuelappthing.mysql.database.azure.com",
     password: "@FuelAppPrediction",
-    database: "fueldatabase"
+    database: "fueldatabase",
   });
-var randomstring = require("randomstring");
-export const registration = ((req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-    const id = randomstring.generate(10);
-    db.query("INSERT INTO usercredential(Username, ID, Password) VALUES (?, ?, ?)", 
-     [username, id, password], 
-     (err, result) => { console.log(err);})
-     console.log(id);
-     return res.json(id);
-  });
+  const username = req.body.username;
+  const password = req.body.password;
+  const id = randomstring.generate(10);
+  db.query(
+    "INSERT INTO usercredential(Username, ID, Password) VALUES (?, ?, ?)",
+    [username, id, password],
+    (err) => {
+      console.log(err);
+    }
+  );
+  console.log(id);
+  return res.json(id);
+};
