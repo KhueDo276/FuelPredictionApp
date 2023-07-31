@@ -65,44 +65,26 @@ export class PricingModule {
       this.HistoryFactor = 0.00;
     }
   }
-  setAddress(Address) {
-    this.Address = Address;
-  }
   setSuggestedPrice() {
     this.SuggestedPrice = this.CurrentPrice + this.MarginFactor;
   }
   getGallons() {
     return this.Gallons;
-  }
-  getAddress() {
-    return this.Address;
-  }
-  getDate() {
-    return this.Date;
-  }
+  } 
   setId(Id)
   {
     this.Id = Id;
-  }
-  getId() {
-    return this.Id;
   }
   setMarginFactor()
   {
     this.MarginFactor = this.CurrentPrice * (this.LocationFactor - this.HistoryFactor + this.GallonsFactor + this.CompanyFactor)
   }
-  getMarginFactor()
-  {
-    return this.MarginFactor;
-  }
+  
   getState()
   {
     return this.State;
   }
-  getLocationFactor()
-  {
-    return this.LocationFactor;
-  }
+  
   setTotalPrice()
   {
     this.TotalPrice = this.SuggestedPrice * this.Gallons;
@@ -115,14 +97,12 @@ export class PricingModule {
   {
     return this.SuggestedPrice;
   }
-  getHistoryFactor()
-  {
-    return this.HistoryFactor;
-  }
+  
 }
 
 export const Deliverys = async(req, res) => {
   let mon = word();
+
   const [foundUser] = await connection.query("SELECT Address_one FROM profile WHERE idprofile = '"+mon+"'"); 
   if (foundUser[0] != undefined && foundUser[0] != null)
   {  
@@ -131,13 +111,16 @@ export const Deliverys = async(req, res) => {
   }
   else
   {
+    if (mon == "hello")
+    {
     return res.status(201).json({message: "You need to relogin"});
+    }
+    else
+    return res.status(201).json({message: "Your address has not been set, please go to profile tab"});
   }
      
 };
 export const Pricing = async (req, res) => { 
-  console.log(req.body[1]);
-  console.log(req.body[0]);
   var num = req.body[0];
   let com = parseInt(num);
   if (req.body[1] == "")
@@ -151,9 +134,7 @@ export const Pricing = async (req, res) => {
 
     console.log('das');
     return res.json({message: "The Gallons is not a number variable"});
-  }
-  else
-  {
+  }else{
   var Newguy = new PricingModule();
   let state = dord();
   let history = hord();
@@ -179,9 +160,8 @@ export const TotalPricing = async (req, res) =>
     Info.push(req.body[i]);
   }
   console.log(Info[4]);
-  if (Info[4] == null)
+  if (Info[4] == null || Info[4] == "" || Info[4].length < 9)
   {
-    return res.status(400).json({ message: "Incorrect Date" });
+    return res.status(400).json({message: "Incorrect Date" });
   }
-  connection.query("INSERT INTO fuelhistory (idfuelhistory,Gallons,Address,SuggestedP,DeliveryDate,TotalP) VALUES ('"+Info[0]+"','"+Info[1]+"','"+Info[2]+"','"+Info[3]+"','"+Info[4]+"','"+Info[5]+"')")
-};
+  connection.query("INSERT INTO fuelhistory (idfuelhistory,Gallons,Address,SuggestedP,DeliveryDate,TotalP) VALUES ('"+Info[0]+"','"+Info[1]+"','"+Info[2]+"','"+Info[3]+"','"+Info[4]+"','"+Info[5]+"')")};
