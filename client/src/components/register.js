@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./styles/register.css";
-
+import { useNavigate } from "react-router-dom";
 function Register() {
   const [inputs, setInputs] = useState({});
-
+  const navigate = useNavigate();
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -13,8 +13,10 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Send the form data to the backend for validation and persistence
+    if (inputs.password !== inputs.confirmPassword)
+    {
+      return alert("The passwords do not match, please reenter");
+    }
     try {
       const response = await fetch("http://localhost:5001/api/register", {
         method: "POST",
@@ -23,19 +25,16 @@ function Register() {
         },
         body: JSON.stringify(inputs),
       });
-
       if (response.ok) {
-        // Registration successful
+        const data = await response.json();
         console.log("Registration successful");
-        // Redirect to login page or display a success message
+        navigate("/homePage",{state:{id:data}});
       } else {
-        // Registration failed
         console.log("Registration failed");
-        // Display an error message to the user
+
       }
     } catch (error) {
       console.log("Error:", error);
-      // Handle error state or display an error message to the user
     }
   };
 
