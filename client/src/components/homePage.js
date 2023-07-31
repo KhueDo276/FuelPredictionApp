@@ -1,30 +1,44 @@
 import React, { useEffect } from "react";
 import Navbar from "./navbar";
-import { useLocation } from "react-router-dom";
+import {useLocation} from 'react-router-dom'
 import "./styles/homePage.css";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 const HomePage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
-    const fetchData = async () => {
-      let mon = "da";
-      if (location.state != null) {
-        mon = location.state.id;
-        let xon = [mon];
-        try {
-          axios
-            .post("http://localhost:5001/api/iddata", xon)
-            .then(() => console.log("info sent"))
-            .catch((err) => {
-              console.error(err);
-            });
-        } catch (error) {
-          console.log(error);
-        }
+     const fetchData = async (e) => {
+      e = "da";
+      if (location.state.id != null){
+      e = location.state.id;
+      let flag = location.state.check;
+      if (flag === true)
+      {
+        alert("Please go to profile management to update your information and proceed with quotes, it will not work otherwise");
       }
+      let xon = [e];
+      try { axios
+        .post("http://localhost:5001/api/iddata", xon)
+        .then(() => console.log("info sent"))
+        .catch((err) => {
+            console.error(err);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    else
+    {
+      
+      navigate("/");
+    }
     };
     fetchData();
   }, []);
+  
+   
   return (
     <div className="home-page">
       <Navbar />
