@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import HomePage from "./components/homePage";
 import FuelFormHistory from "./components/fuelFormHistory";
-import FuelForm from "./components/fuelForm";
+import Pricing from "./components/fuelForm";
 import LoginForm from "./components/LoginForm";
 import Register from "./components/register";
 import ClientProfilePage from "./components/clientProfile";
@@ -19,7 +19,7 @@ function App() {
           <Route path="/homepage" element={<HomePage />} />
           <Route path="/noAccess" element={<NoAccess />} />
           <Route path="/Profilemanagement" element={<ProfileManagement />} />
-          <Route path="/fuelForm" element={<FuelForm />} />
+          <Route path="/fuelForm" element={<Pricing />} />
           <Route path="/fuelFormHistory" element={<FuelFormHistory />} />
           <Route path="/register" element={<Register />} />
         </Routes>
