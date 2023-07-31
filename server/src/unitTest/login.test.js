@@ -25,11 +25,12 @@ describe("user", () => {
         };
 
         // Mock the Express request object (if needed)
-        const mockRequest = {};
+        const mockRequest = (body) => ({ body });
+        const rec = (mockRequest("testuser", "testpassword"))
 
         try {
             // Call the function to be tested
-            await user(mockRequest, mockResponse);
+            await user(rec, mockResponse);
 
             // Expect that the query method of the database connection was called with the correct SQL query
             expect(mockConnection.query).toHaveBeenCalledWith(
