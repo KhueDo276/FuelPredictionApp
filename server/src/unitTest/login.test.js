@@ -1,47 +1,33 @@
+import request from "supertest";
+import * as mysql from "mysql";
 import { user } from "../users/userController.js";
-// Mock the database connection
-jest.mock("../database/database.js", () => ({
-    query: jest.fn(),
-}));
-
 describe("user", () => {
     it("if user was found", async () => {
-        // Mock the database query result with the data you inserted
         const mockRows = [
             {
-                Username: "testuser",
+                Username: "este5454",
                 ID: "mockedID",
-                Password: "testpassword",
+                Password: "2Estebanito2",
             },
         ];
 
-        // Mock the database query function to return the user
         const mockConnection = require("../database/database.js");
         mockConnection.query.mockResolvedValue([mockRows]);
 
-        // Mock the Express response object
+        
         const mockResponse = {
             json: jest.fn(),
+            status: jest.fn().mockReturnThis(),
         };
-
-        // Mock the Express request object (if needed)
+    
         const mockRequest = (body) => ({ body });
-        const rec = (mockRequest("testuser", "testpassword"))
+        const rec = mockRequest({name: "este5454",password: "Estebanito"})
+            user(rec, mockResponse);
 
-        try {
-            // Call the function to be tested
-            await user(rec, mockResponse);
-
-            // Expect that the query method of the database connection was called with the correct SQL query
             expect(mockConnection.query).toHaveBeenCalledWith(
-                "SELECT * FROM usercredential WHERE Username = testuser"
+                "SELECT * FROM usercredential WHERE Username = este5454"
             );
-
-            // Expect that the response.json method was called with the user returned from the database
-            expect(mockResponse.json).toHaveBeenCalledWith({ userId: "testuser", message: "True" });
-        } catch (error) {
-            // If any error occurs, log it to the console for debugging
-            console.error(error);
-        }
+            expect(mockResponse.json).toHaveBeenCalledWith({ userId: "este5454", message: "True" });
+        
     });
 });
