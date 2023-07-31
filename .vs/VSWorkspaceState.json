@@ -3,11 +3,13 @@
     "",
     "\\client",
     "\\client\\src",
+    "\\client\\src\\components",
     "\\server",
     "\\server\\src",
     "\\server\\src\\fuelQuote",
+    "\\server\\src\\unitTest",
     "\\server\\src\\users"
   ],
-  "SelectedNode": "\\server\\src\\users\\userController.js",
+  "SelectedNode": "\\server\\src\\fuelQuote\\fuelController.js",
   "PreviewInSolutionExplorer": false
 }
